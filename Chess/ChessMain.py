@@ -31,9 +31,10 @@ def main():
     pygame.display.set_caption("mongoChess")
     pygame.display.set_icon(p.image.load("images/greeter.png"))
     clock = p.time.Clock()
-
     screen.fill(p.Color("white"))
     game_state = ChessEngine.GameState()
+    valid_moves = game_state.get_valid_moves()
+    move_made = False  # Flag variable for when a move is made
     load_images()
 
     running = True
@@ -44,6 +45,7 @@ def main():
         for e in p.event.get():
             if e.type == p.QUIT:
                 running = False
+            # Mouse handler
             elif e.type == p.MOUSEBUTTONDOWN:
                 location = p.mouse.get_pos()  # (x, y) location of mouse
                 col = location[0] // SQ_SIZE
@@ -58,9 +60,20 @@ def main():
 
                 if len(player_clicks) == 2:
                     move = ChessEngine.Move(player_clicks[0], player_clicks[1], game_state.board)
-                    game_state.make_move(move)
+                    if move in valid_moves:
+                        game_state.make_move(move)
+                        move_made = True
                     square_selected = ()
                     player_clicks = []
+            # Key press handlers
+            elif e.type == p.KEYDOWN:
+                if e.key == p.K_z:  #When 'z' is pressed
+                    game_state.undo_move()
+                    move_made = True
+
+        if move_made:
+            valid_moves = game_state.get_valid_moves()
+            move_made = False
 
         draw_game_state(screen, game_state)
         clock.tick(MAX_FPS)
