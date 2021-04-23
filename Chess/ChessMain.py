@@ -30,17 +30,37 @@ def main():
     screen = p.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("mongoChess")
     pygame.display.set_icon(p.image.load("images/greeter.png"))
-
     clock = p.time.Clock()
+
     screen.fill(p.Color("white"))
     game_state = ChessEngine.GameState()
     load_images()
+
     running = True
+    square_selected = ()  # No square is selected, keep track of the last click of the user (tuple: (row, col))
+    player_clicks = []  # Keep track of player clicks (two tuples: [(6,4)]
 
     while running:
         for e in p.event.get():
             if e.type == p.QUIT:
                 running = False
+            elif e.type == p.MOUSEBUTTONDOWN:
+                location = p.mouse.get_pos()  # (x, y) location of mouse
+                col = location[0] // SQ_SIZE
+                row = location[1] // SQ_SIZE
+
+                if square_selected == (row, col):
+                    square_selected = ()  # Deselect
+                    player_clicks = []
+                else:
+                    square_selected = (row, col)
+                    player_clicks.append(square_selected)
+
+                if len(player_clicks) == 2:
+                    move = ChessEngine.Move(player_clicks[0], player_clicks[1], game_state.board)
+                    game_state.make_move(move)
+                    square_selected = ()
+                    player_clicks = []
 
         draw_game_state(screen, game_state)
         clock.tick(MAX_FPS)
