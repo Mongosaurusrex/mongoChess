@@ -9,12 +9,12 @@ At the moment I have built a mechanism for locking pieces from moving if they ha
 An basic "Undo" mechanism is in place by pressing the ``z`` button, which will undo your last move untill the original setup of the board is made
 ## TODO:
 
-1. Add the Bishop movement logic
+1. ~~Add the Bishop movement logic~~
 2. Add Knight movement logic
-3. Add Queen movement logic
+3. ~~Add Queen movement logic~~
 4. Add King movement logic
 5. Add Check/Checkmate/Stalemate logic
-6. Some king of an AI to challenge you
+6. Some kind of AI to challenge you
 7. General cleanup with smoother animations, menu and displaying movement history
 
 ##Probably not going to implement:
