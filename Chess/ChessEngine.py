@@ -141,7 +141,16 @@ class GameState:
     Get all the knight moves for the knight located at row, col and add these moves to the list
     """
     def get_knight_moves(self, row, col, moves):
-        pass
+        # The knight moves in an 'L' shaped pattern
+        knight_moves = ((-2, -1), (-2, 1), (-1, -2), (-1, 2), (1, -2), (1, 2), (2, -1), (2, 1))
+        ally_color = "w" if self.white_to_move else "b"
+        for m in knight_moves:  # ...and only once
+            end_row = row + m[0]
+            end_col = col + m[1]
+            if 0 <= end_row < 8 and 0 <= end_col < 8:  # Within bounds of the board
+                end_piece = self.board[end_row][end_col]
+                if end_piece[0] != ally_color:  # We are not going to 'step on' an ally piece (empty or enemy piece)
+                    moves.append(Move((row, col), (end_row, end_col), self.board))
 
     """ 
     Get all the queen moves for the queen located at row, col and add these moves to the list
@@ -155,7 +164,16 @@ class GameState:
     Get all the king moves for the king located at row, col and add these moves to the list
     """
     def get_king_moves(self, row, col, moves):
-        pass
+        # The king moves in all directions
+        king_moves = ((1, 1), (-1, 1), (1, -1), (-1, -1), (1, 0), (-1, 0), (0, 1), (0, -1))
+        ally_color = "w" if self.white_to_move else "b"
+        for m in king_moves: # ...and only once
+            end_row = row + m[0]
+            end_col = col + m[1]
+            if 0 <= end_row < 8 and 0 <= end_col < 8:  # Within bounds of the board
+                end_piece = self.board[end_row][end_col]
+                if end_piece[0] != ally_color:  # We are not going to 'step on' an ally piece (empty or enemy piece)
+                    moves.append(Move((row, col), (end_row, end_col), self.board))
 
 
 class Move:
