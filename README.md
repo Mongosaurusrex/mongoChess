@@ -13,7 +13,7 @@ An basic "Undo" mechanism is in place by pressing the ``z`` button, which will u
 2. ~~Add Knight movement logic~~
 3. ~~Add Queen movement logic~~
 4. ~~Add King movement logic~~
-5. Add Check/Checkmate/Stalemate logic
+5. ~~Add~~ Fix less naïve Check/Checkmate/Stalemate logic
 6. Some kind of AI to challenge you
 7. General cleanup with smoother animations, menu and displaying movement history
 
