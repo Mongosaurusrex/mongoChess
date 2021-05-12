@@ -13,9 +13,12 @@ An basic "Undo" mechanism is in place by pressing the ``z`` button, which will u
 2. ~~Add Knight movement logic~~
 3. ~~Add Queen movement logic~~
 4. ~~Add King movement logic~~
-5. ~~Add~~ Fix less naïve Check/Checkmate/Stalemate logic
+5. ~~Add~~ ~~Fix less naïve Check/Checkmate/Stalemate logic~~ ✅ NEVER DOING SOMETHING LIKE THIS AGAIN
 6. Some kind of AI to challenge you
 7. General cleanup with smoother animations, menu and displaying movement history
+8. En passent
+9. Pawn promotion
+10. Castling
 
 ##Probably not going to implement:
 1. Multiplayer
